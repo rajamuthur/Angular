@@ -1,4 +1,4 @@
-# Angularcrud[Employee management] - with node & sqlite3
+# Angular6 with node & sqlite3 [Employee management] 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.3. This project is used to maintain employee details. Two usergroup is allowed. 
 1. Admin 
