@@ -1,6 +1,7 @@
 # Angularcrud
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.3. This project is used to maintain employee details. Two usergroup is allowed. Admin and user
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.3. This project is used to maintain employee details. Two usergroup is allowed. Admin and user. 
+
 Admin - Has full access
 User - User can do read operation
 
