@@ -1,0 +1,44 @@
+<app-accordian [accordianTitle]="_empDetails?.name" [isHidden]="false"
+    [isJustViewed]=" _empDetails.id == selectedEmpId">
+    <div class="accordian-content">
+        <div class="row">
+            <div class="col-md-6">
+                Name:
+            </div>
+            <div class="col-md-6">
+                {{_empDetails?.name}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                Id:
+            </div>
+            <div class="col-md-6">
+                {{_empDetails?.id}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                Preference:
+            </div>
+            <div class="col-md-6" [ngSwitch]="_empDetails?.preference">
+                <div *ngSwitchCase="phoneNumber">Phone Number</div>
+                <div *ngSwitchCase="email">Email</div>
+                <div *ngSwitchDefault>None</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                DOB:
+            </div>
+            <div class="col-md-6">
+                {{_empDetails?.dob | date}}
+            </div>
+        </div>
+    </div>
+    <div class="btn-toolbar accordian-footer">
+        <button class="btn btn-primary" (click)="onView_empDetails(_empDetails.id)">View</button>
+        <button class="btn btn-primary" (click)="updateEmployee(_empDetails?.id)">Edit</button>
+        <button class="btn btn-danger" (click)="onDelete_empDetails(_empDetails?.id)">Delete</button>
+    </div>
+</app-accordian>

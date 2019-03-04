@@ -1,0 +1,11 @@
+<div class="panel panel-primary" [ngClass]="{'panel-success': isJustViewed}" (click)="isHidden = !isHidden">
+    <div class="panel-heading pointerCursor">
+        {{ accordianTitle | uppercase }}
+    </div>
+    <div class="panel-body" [hidden]="isHidden">
+        <ng-content select=".accordian-content"></ng-content>
+    </div>
+    <div class="panel-footer" [hidden]="isHidden">
+        <ng-content select=".accordian-footer"></ng-content>
+    </div>
+</div>

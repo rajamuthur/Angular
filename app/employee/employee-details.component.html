@@ -1,0 +1,86 @@
+<app-accordian [accordianTitle]="employee?.name" [isHidden]="false" [isJustViewed]="false">
+    <div class="accordian-content">
+        <div class="row">
+            <div class="col-md-6">
+                Name:
+            </div>
+            <div class="col-md-6">
+                {{employee?.name}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                Id:
+            </div>
+            <div class="col-md-6">
+                {{employee?.id}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                Preference:
+            </div>
+            <div class="col-md-6" [ngSwitch]="employee?.preference">
+                <div *ngSwitchCase="phoneNumber">Phone Number</div>
+                <div *ngSwitchCase="email">Email</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                DOB:
+            </div>
+            <div class="col-md-6">
+                {{employee?.dob | date}}
+            </div>
+        </div>
+    </div>
+    <div class="btn-group accordian-footer">
+        <button class="btn btn-primary" [routerLink]="['/employees', {selectedId: employee?.id}]"
+            queryParamsHandling="preserve" [queryParams]="{'newName':'test'}">Back To List</button>
+        <button class="btn btn-primary pull-right" (click)="loadNextEmployee()">Next Employee</button>
+    </div>
+</app-accordian>
+<!-- <div class="panel panel-primary">
+      <div class="panel-heading">
+          {{employee?.name | uppercase }}
+      </div>
+      <div class="panel-body">
+          <div class="row">
+              <div class="col-md-6">
+                  Name:
+              </div>
+              <div class="col-md-6">
+                  {{employee?.name}}
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-6">
+                  Id:
+              </div>
+              <div class="col-md-6">
+                  {{employee?.id}}
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-6">
+                  Preference:
+              </div>
+              <div class="col-md-6" [ngSwitch]="employee?.preference">
+                  <div *ngSwitchCase="phoneNumber">Phone Number</div>
+                  <div *ngSwitchCase="email">Email</div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-6">
+                  DOB:
+              </div>
+              <div class="col-md-6">
+                  {{employee?.dob | date}}
+              </div>              
+          </div>
+      </div>
+      <div class="panel-footer">
+        <button class="btn btn-primary" [routerLink]="['/list', {selectedId: employee?.id}]" queryParamsHandling="preserve" [queryParams]="{'newName':'test'}">Back To List</button>
+        <button class="btn btn-primary pull-right" (click)="loadNextEmployee()">Next Employee</button>
+      </div>
+  </div> -->

@@ -1,0 +1,22 @@
+<!-- <div>
+  <button class="btn btn-primary" (click)="loadNextEmpItem()">Next</button>
+</div> -->
+<h1>{{empName}}</h1>
+
+<div class="form-group">
+  <input type="text" [(ngModel)] = "empSearchString" placeholder="Search Employee Name"/> 
+</div>
+<div class="form-group">
+  <button class="btn btn-primary" (click)="changeName()">Change Name</button>
+</div>
+<!-- Call child component method and properties using template reference variable -->
+<h1 #nameAgeVariable></h1>
+<div *ngFor="let emp of employeeList | employeeFilterByName: empSearchString">
+  <!-- <div (click)="nameAgeVariable.innerHTML = showEmpComponent.getNameAndAge()" > -->
+  <div>
+    <show-emp-detail [empDetails]="emp" (viewEmployeeCallback)="displayEmployee($event)" (deleteEmployeeCallback)="deleteEmployee($event)" #showEmpComponent></show-emp-detail>
+  </div>
+</div>
+<div *ngIf="error">
+  Error
+</div>

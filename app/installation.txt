@@ -1,0 +1,6 @@
+To start server:
+ng serve -o
+
+Required packages:
+npm install ngx-bootstrap
+npm install bootstrap

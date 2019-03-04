@@ -1,0 +1,180 @@
+<form class="form-horizontal" name="employeeForm" [formGroup]="employeeForm" (submit)="onSubmitEmpForm()">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <div class="panel-title">Create Employee Details</div>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <label class="control-label col-sm-3">Name</label>
+        <div class="col-sm-9" [ngClass]="{'has-error': employeeForm.get('name').errors && (employeeForm.get('name').touched || employeeForm.get('name').dirty)}">
+          <input class="form-control" name="fullName" formControlName="name" (blur)="showValidationErrors()" />
+          <span class="help-block" *ngIf="employeeForm.get('name').errors && (employeeForm.get('name').touched || employeeForm.get('name').dirty)">
+            <span *ngIf="employeeForm.get('name').errors.required">
+              Name is required
+            </span>
+            <span *ngIf="employeeForm.get('name').errors.minlength || employeeForm.get('name').errors.maxlength">
+              Name is contain 2-10 character
+            </span>
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3">Age</label>
+        <div class="col-sm-9" [ngClass]="{'has-error': empFormErr.age}">
+          <input class="form-control" name="age" formControlName="age" (blur)="showValidationErrors()" />
+          <span class="help-block" *ngIf="empFormErr.age">
+            {{empFormErr.age}}
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3">Gender</label>
+        <div class="col-sm-9" [ngClass]="{'has-error': empFormErr.gender}">
+          <label class="radio-inline">
+            <input type="radio" name="gender" formControlName="gender" (blur)="showValidationErrors()" value="male" />
+            Male
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="gender" formControlName="gender" (blur)="showValidationErrors()" value="Female" />
+            Female
+          </label>
+          <span class="help-block" *ngIf="empFormErr.gender">
+            {{empFormErr.gender}}
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3">Preference</label>
+        <div class="col-sm-9" [ngClass]="{'has-error': empFormErr.preference}">
+          <select formControlName="preference" class="select-inline">
+            <option value="">Select Preference</option>
+            <option *ngFor="let pList of preferenceList " value="{{pList.code}}">{{pList.name}}</option>
+          </select>
+          <!-- <label class="radio-inline">
+            <input type="radio" name="preference" formControlName="preference" (blur)="showValidationErrors()" value="phone" />
+            PhoneNumber
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="preference" formControlName="preference" (blur)="showValidationErrors()" value="email" />
+            Email
+          </label> -->
+          <span class="help-block" *ngIf="empFormErr.preference">
+            {{empFormErr.preference}}
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3">Email</label>
+        <div class="col-sm-9" [ngClass]="{'has-error': empFormErr.email}">
+          <input type="text" name="preference" class="form-control" formControlName="email" (blur)="showValidationErrors()" />
+          <span class="help-block" *ngIf="empFormErr.email">
+            {{empFormErr.email}}
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3">Phone Number</label>
+        <div class="col-sm-9" [ngClass]="{'has-error': empFormErr.phoneNumber}">
+          <input type="text" name="phoneNumber" class="form-control" formControlName="phoneNumber" (blur)="showValidationErrors()" />
+          <span class="help-block" *ngIf="empFormErr.phoneNumber">
+            {{empFormErr.phoneNumber}}
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3">Password</label>
+        <div class="col-sm-9" [ngClass]="{'has-error': empFormErr.password}">
+          <input type="text" name="password" class="form-control" formControlName="password" (blur)="showValidationErrors()" />
+          <span class="help-block" *ngIf="empFormErr.password">
+            {{empFormErr.password}}
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3">Confirm Password</label>
+        <div class="col-sm-9" [ngClass]="{'has-error': empFormErr.cpassword}">
+          <input type="text" name="cpassword" class="form-control" formControlName="cpassword" (blur)="showValidationErrors()" />
+          <span class="help-block" *ngIf="empFormErr.cpassword">
+            {{empFormErr.cpassword}}
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3">Date of Birth</label>
+        <div class="col-sm-9" [ngClass]="{'has-error': empFormErr.dob}">
+          <input type="text" name="dob" class="form-control" bsDatepicker [bsConfig] = "datePickerConfig" formControlName="dob" (blur)="showValidationErrors()" />
+          <span class="help-block" *ngIf="empFormErr.dob">
+            {{empFormErr.dob}}
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3"></label>
+        <div class="col-sm-9" [ngClass]="{'has-error': empFormErr.isActive}">
+          <label class="checkbox-inline">
+            <input type="checkbox" name="isActive" formControlName="isActive" (blur)="showValidationErrors()" />
+            Active User
+          </label>
+          <span class="help-block" *ngIf="empFormErr.isActive">
+            {{empFormErr.isActive}}
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <div class="btn-toolbar">
+        <button class="btn btn-primary" type="submit" [disabled]="!employeeForm.valid">Save</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div>
+  <h1>
+    Table Errors:
+  </h1>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th rowspan="2">FormGroup Errors</th>
+        <th colspan="3">FormControl Errors</th>
+      </tr>
+      <tr>
+        <th>Name Errors</th>
+        <th>Age Errors</th>
+        <th>Preference Errors</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          FormGroup Touched - {{ employeeForm.touched}} <br />
+          FormGroup Dirty - {{ employeeForm.dirty}} <br />
+          FormGroup Valid - {{ employeeForm.valid}} <br />
+          FormGroup value - {{ employeeForm.value | json }} <br />
+        </td>
+        <td>
+          FormControl Touched - {{ employeeForm.get('name').touched}} <br />
+          FormControl Dirty - {{ employeeForm.get('name').dirty}} <br />
+          FormControl Valid - {{ employeeForm.get('name').valid}} <br />
+          FormControl value - {{ employeeForm.get('name').value}} <br />
+          FormGroup Errors - {{ employeeForm.get('name').errors | json }}
+        </td>
+        <td>
+          FormControl Touched - {{ employeeForm.get('age').touched}} <br />
+          FormControl Dirty - {{ employeeForm.get('age').dirty}} <br />
+          FormControl Valid - {{ employeeForm.get('age').valid}} <br />
+          FormControl value - {{ employeeForm.get('age').value}} <br />
+          FormGroup Errors - {{ employeeForm.get('age').errors | json }}
+        </td>
+        <td>
+          FormControl Touched - {{ employeeForm.get('preference').touched}} <br />
+          FormControl Dirty - {{ employeeForm.get('preference').dirty}} <br />
+          FormControl Valid - {{ employeeForm.get('preference').valid}} <br />
+          FormControl value - {{ employeeForm.get('preference').value}} <br />
+          FormGroup Errors - {{ employeeForm.get('preference').errors | json }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,42 @@
+<nav class="navbar navbar-default">
+  <ul class="nav navbar-nav" *ngIf="_authService.isuserLoggedIn()">
+    <li>
+      <a routerLink="dashboard">Dashboard</a>
+    </li>
+    <li>
+      <a routerLink="employees">List</a>
+    </li>
+    <li>
+      <a [routerLink]="['/employees/edit/0']">Create</a>
+    </li>
+  </ul>
+  <ul class="nav navbar-nav pull-right">
+    <li *ngIf="_authService.isuserLoggedIn()">
+      <a (click)="onLogOut()">{{_authService.getUserName()}} - Logout</a>
+    </li>
+    <li *ngIf="!_authService.isuserLoggedIn()">
+        <a>Login</a>
+      </li>
+  </ul>
+</nav>
+<div class="container">
+  <div *ngIf="showLoading">
+    <div class="lds-css ng-scope">
+      <div class="lds-spinner" style="width:100%;height:100%">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>
