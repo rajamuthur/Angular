@@ -22,5 +22,9 @@ https://github.com/rajamuthur/nodeWithSqlite3
 Admin User:
 admin/password
 
+# For Setup
+
+Please refer app/installation.txt file to do setup
+
 
 
