@@ -2,5 +2,21 @@ To start server:
 ng serve -o
 
 Required packages:
-npm install ngx-bootstrap
-npm install bootstrap
+npm install --save ngx-bootstrap
+npm install --save bootstrap
+npm install --save lodash
+npm install ng6-toastr-notifications --save
+
+To Create module in CLI:
+D:\AngularJs\angularcrud\app>ng g m reports/reports --flat=true
+CREATE app/reports/reports.module.ts (191 bytes)
+
+To Create Component in CLI:
+D:\AngularJs\angularcrud\app>ng g c reports/report --flat=true
+Output:
+CREATE app/reports/report.component.html (25 bytes)
+CREATE app/reports/report.component.ts (269 bytes)
+CREATE app/reports/report.component.css (0 bytes)
+UPDATE app/reports/reports.module.ts (260 bytes)
+
+

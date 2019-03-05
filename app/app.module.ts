@@ -19,7 +19,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ng6-toastr-notifications';
-
+import { AppConstants } from './app.constants';
+import { HeaderComponent } from './header/header.component';
 @NgModule({
   declarations: [
     AppComponent,    
@@ -27,7 +28,8 @@ import { ToastrModule } from 'ng6-toastr-notifications';
     AutoGrowDirective,   
     DashboardComponent,
     LoginComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    HeaderComponent        
     // RangeValidatorDirective
   ],
   imports: [
@@ -42,7 +44,7 @@ import { ToastrModule } from 'ng6-toastr-notifications';
   ],
   exports: [
   ],
-  providers: [AuthServices, AuthGuard, CustomPreloadingService],
+  providers: [AuthServices, AuthGuard, CustomPreloadingService, AppConstants],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

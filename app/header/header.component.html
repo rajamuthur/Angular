@@ -1,0 +1,28 @@
+<nav class="navbar navbar-default">
+  <ul class="nav navbar-nav" *ngIf="_authService.isuserLoggedIn()">
+    <li>
+      <a routerLink="dashboard">Dashboard</a>
+    </li>
+    <li>
+      <a routerLink="employees">List</a>
+    </li>
+    <li>
+      <a [routerLink]="['/employees/edit/0']">Create</a>
+    </li>
+    <li>
+      <a routerLink="reports">Reports</a>
+    </li>
+  </ul>
+  <ul class="nav navbar-nav pull-right">
+    <li *ngIf="_authService.isuserLoggedIn()" class="pull-left info">
+      <p class="mr-1">
+        {{_authService.getUserName()}} <br />
+        <span class="logout" (click)="onLogOut()"> Logout</span>
+      </p>
+      
+    </li>
+    <li *ngIf="!_authService.isuserLoggedIn()">
+      <a>Login</a>
+    </li>
+  </ul>
+</nav>

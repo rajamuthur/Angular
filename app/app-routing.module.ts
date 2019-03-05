@@ -7,13 +7,16 @@ import { AuthGuard } from  './auth-guard';
 import { CustomPreloadingService } from './custom-preloading.services';
 import { EmployeeModule } from './employee/employee.module';
 import { NotFoundComponent} from './not-found/not-found.component';
+import { ReportsModule } from './reports/reports.module';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
-  { path: 'invalid', component: AccessDeniedComponent, canActivate: [AuthGuard]},
-  // { path: 'employees', loadChildren: './employee/employee.module#EmployeeModule', data: { preload: true}}, //Lazy loading
-  { path: 'employees', loadChildren: () => EmployeeModule, data: { preload: true}}, //Lazy loading
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: { 'pvName': 'dashboard'}},
+  { path: 'reports', loadChildren: './reports/reports.module#ReportsModule', data: { preload: false}}, //Lazy loading
+  // { path: 'reports', loadChildren: () => ReportsModule, data: { preload: true}}, //Lazy loading
+  { path: 'invalid', component: AccessDeniedComponent},
+  { path: 'employees', loadChildren: './employee/employee.module#EmployeeModule', data: { preload: true}}, //Lazy loading
+  // { path: 'employees', loadChildren: () => EmployeeModule, data: { preload: true}}, //Lazy loading
   { path : '', redirectTo : '/dashboard', pathMatch : 'full' },
   { path : '**', component : NotFoundComponent}
 ];

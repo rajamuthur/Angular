@@ -9,22 +9,28 @@ import { CreateEmployeeCanDeActivateGuard } from './create-employee-can-deactiva
 import { EmployeeCanActivateGuardService } from './employee-can-activate.service';
 import { EmployeeDetailsComponent } from './employee-details.component';
 import { AuthGuard } from '../auth-guard';
+import { AppConstants } from '../app.constants';
 
-const routes: Routes = [
-  // {
-  //   path: 'employees', children: [
-      { path: '', component: ListEmployeesComponent, canActivate: [AuthGuard], resolve: { employeeList: EmployeeListResolveSevice } },
-      { path: 'create', component: CreateEmployeeComponent, canActivate: [AuthGuard], canDeactivate: [CreateEmployeeCanDeActivateGuard] },
-      { path: 'edit/:id', component: EditEmployeeComponent, canActivate: [AuthGuard], canDeactivate: [CreateEmployeeCanDeActivateGuard], resolve: { employee: EmployeeDetailResolveSevice } },
-      { path: 'view/:id', component: EmployeeDetailsComponent, canActivate: [EmployeeCanActivateGuardService, AuthGuard] },
-  //   ]
-  // }
+const empRoutes: Routes = [
+  {
+    path: '', children: [
+      { path: '', component: ListEmployeesComponent, canActivate: [AuthGuard], resolve: { employeeList: EmployeeListResolveSevice }, data: { 'pvName': 'view-user'} },
+      { path: 'create', component: CreateEmployeeComponent, canActivate: [AuthGuard], canDeactivate: [CreateEmployeeCanDeActivateGuard], 
+        data: { 'pvName': 'create-user'} },
+      { path: 'edit/:id', component: EditEmployeeComponent, canActivate: [AuthGuard], canDeactivate: [CreateEmployeeCanDeActivateGuard], resolve: { employee: EmployeeDetailResolveSevice }, 
+        data: { 'pvName': 'create-user'} },
+      { path: 'view/:id', component: EmployeeDetailsComponent, canActivate: [EmployeeCanActivateGuardService, AuthGuard], data: { 'pvName': 'view-user'} },
+    ]
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(empRoutes)],
   exports: [RouterModule]
 })
 export class EmployeeRoutingModule {
+  constructor(private _appConstants: AppConstants) {
+
+  }
 
 }
