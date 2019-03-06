@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { AutoGrowDirective } from './directives/auto-group.directives';
 // import  { RangeValidatorDirective } from './directives/range-validator.directives';
 // import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AccessDeniedComponent } from './acces-denied.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
@@ -21,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ng6-toastr-notifications';
 import { AppConstants } from './app.constants';
 import { HeaderComponent } from './header/header.component';
+import { TokenInterceptorService } from './token-interceptor.service';
 @NgModule({
   declarations: [
     AppComponent,    
@@ -44,7 +45,13 @@ import { HeaderComponent } from './header/header.component';
   ],
   exports: [
   ],
-  providers: [AuthServices, AuthGuard, CustomPreloadingService, AppConstants],
+  providers: [AuthServices, AuthGuard, CustomPreloadingService, AppConstants,    
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

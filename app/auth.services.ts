@@ -50,6 +50,7 @@ export class AuthServices {
         localStorage.removeItem("user");        
         localStorage.removeItem("privlieges");
         localStorage.removeItem("role");
+        localStorage.removeItem("token");
     }
 
     setUsrInfo(data) {
@@ -57,6 +58,11 @@ export class AuthServices {
         localStorage.setItem("user", info);   
         localStorage.setItem("privlieges", data['privileges']);
         localStorage.setItem("role", data['role']);
+        localStorage.setItem("token", data['token']);
+    }
+
+    getToken() {
+        return  localStorage.getItem("token") ? localStorage.getItem("token") : false;
     }
 
     getUserPrivilegeList() {
